@@ -1,5 +1,21 @@
-# Logs
-logs
+
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+.vite/
+.next/
+coverage/
+test-output/
+
+# Environment files
+.env
+.env.*
+
+# Log files
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,16 +23,21 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Firebase config (security)
 
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
 .DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Windows system files
 *.suo
 *.ntvs*
 *.njsproj
