@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chelsea-boot-shop</title>
+  </head>
+  <body>
+    <!-- কাস্টম বাংলা স্ক্রল বার শুরু -->
+    <style>
+      .custom-marquee-bar {
+        width: 100vw;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        background: linear-gradient(90deg, #1e293b 0%, #64748b 100%);
+        padding: 10px 0;
+      }
+      .custom-marquee-content {
+        display: flex;
+        gap: 120px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        animation: marqueeAnim 32s linear infinite;
+      }
+      @keyframes marqueeAnim {
+        0% { transform: translateX(100vw); }
+        100% { transform: translateX(-100vw); }
+      }
+    </style>
+    <div class="custom-marquee-bar">
+      <div class="custom-marquee-content">
+        <span>১০০% খাঁটি গরুর চামড়ার প্রিমিয়াম পণ্য পৌঁছে দিচ্ছি সারা দেশে</span>
+        <span>১০০% খাঁটি গরুর চামড়ার প্রিমিয়াম পণ্য পৌঁছে দিচ্ছি সারা দেশে</span>
+        <span>১০০% খাঁটি গরুর চামড়ার প্রিমিয়াম পণ্য পৌঁছে দিচ্ছি সারা দেশে</span>
+      </div>
+    </div>
+    <!-- কাস্টম বাংলা স্ক্রল বার শেষ -->
+    <div id="root" style="margin-top: 45px;"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
