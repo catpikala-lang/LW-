@@ -1,7 +1,7 @@
 // Facebook Conversion API (CAPI) Functions
-const PIXEL_ID = '1429350568976516';
+const PIXEL_ID = import.meta.env.VITE_FB_PIXEL_ID || '';
 // WARNING: এই token backend-এ রাখা safer, frontend-এ নয়
-const ACCESS_TOKEN = import.meta.env.VITE_FB_ACCESS_TOKEN || 'EAAX17AVNWQkBQtd5ZCROvq637z8lxcC75Plcit7cOPgoKJ4JdYP6bLgOW6M9y0XlPiCA5ybTg5ZCPtwULs99ZCvsLIc3qDtnOYGY8GMHs6qOl0IFRUIUKtcgNCIuHkpiFZB4Fmjb8uWGE0aLqHE9LlupEzXruZA5PEbZAn8ZAMGA0ubYPBpaQzZBiaZAYi78ZB0HKKswZDZD';
+const ACCESS_TOKEN = import.meta.env.VITE_FB_ACCESS_TOKEN || '';
 
 // SHA256 Hash Function (Phone/Email hash করার জন্য)
 const hashData = (data) => {
