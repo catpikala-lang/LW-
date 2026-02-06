@@ -9,18 +9,6 @@ import { doc, getDoc, updateDoc, serverTimestamp, deleteDoc } from 'firebase/fir
 import { db } from '../firebase/config';
 import { sendPurchaseEvent } from '../utils/facebookCAPI';
 
-// Order cancel (delete) function
-const cancelOrder = async () => {
-  if (!window.confirm('আপনি কি নিশ্চিতভাবে অর্ডারটি বাতিল করতে চান?')) return;
-  try {
-    const orderRef = doc(db, 'orders', orderId);
-    await deleteDoc(orderRef);
-    toast.success('অর্ডার বাতিল করা হয়েছে!');
-    navigate('/admin');
-  } catch (error) {
-    toast.error('অর্ডার বাতিল করতে সমস্যা হয়েছে!');
-  }
-};
 
 // Order confirm function
 const confirmOrder = async () => {
@@ -58,22 +46,16 @@ export default function AdminOrderDetails() {
   const [loading, setLoading] = useState(true);
   const [trackingLink, setTrackingLink] = useState('');
 
-  // Order status update function
-  const updateOrderStatus = async (newStatus) => {
+  // Order cancel (delete) function
+  const cancelOrder = async () => {
+    if (!window.confirm('আপনি কি নিশ্চিতভাবে অর্ডারটি বাতিল করতে চান?')) return;
     try {
-      // Update in Firebase
-      const orderRef = doc(db, "orders", orderId);
-      await updateDoc(orderRef, {
-        status: newStatus,
-        trackingLink: trackingLink,
-        updatedAt: serverTimestamp()
-      });
-      toast.success('অর্ডার স্ট্যাটাস সফলভাবে আপডেট হয়েছে!');
-      loadOrder(); // Reload order
-
+      const orderRef = doc(db, 'orders', orderId);
+      await deleteDoc(orderRef);
+      toast.success('অর্ডার বাতিল করা হয়েছে!');
+      navigate('/admin');
     } catch (error) {
-      console.error("Error updating order:", error);
-      toast.error('স্ট্যাটাস আপডেট করতে সমস্যা হয়েছে!');
+      toast.error('অর্ডার বাতিল করতে সমস্যা হয়েছে!');
     }
   };
 
