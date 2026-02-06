@@ -47,7 +47,6 @@ export const sendPurchaseEvent = async (orderData) => {
       body: JSON.stringify({
         data: [eventData],
         access_token: ACCESS_TOKEN,
-        test_event_code: 'TEST55849' // Test mode-এর জন্য (পরে remove করবে)
       })
     });
 
@@ -60,13 +59,3 @@ export const sendPurchaseEvent = async (orderData) => {
   }
 };
 
-// Test Event Function
-export const testCAPI = async () => {
-  const testData = {
-    orderId: 'TEST_' + Date.now(),
-    amount: 3999,
-    customerPhone: '017XXXXXXXX',
-    products: [{ id: 'test-1', name: 'Test Product' }]
-  };
-  return await sendPurchaseEvent(testData);
-};
