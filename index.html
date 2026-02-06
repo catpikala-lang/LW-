@@ -18,6 +18,47 @@
     src="https://www.facebook.com/tr?id=1429350568976516&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
+    <!-- Facebook Conversion API (CAPI) Documentation -->
+    <!--
+      The following is a summary of the Facebook CAPI logic used in this project (see src/utils/facebookCAPI.js):
+
+      1. Uses PIXEL_ID and ACCESS_TOKEN (from environment variables) to send server-side purchase events to Facebook.
+      2. Sends POST requests to https://graph.facebook.com/v17.0/[PIXEL_ID]/events with order and user data.
+      3. User data (like phone) is hashed before sending.
+      4. Example function: sendPurchaseEvent(orderData)
+      5. For testing: testCAPI() sends a test event.
+
+      Note: CAPI code is JavaScript and must run in a JS environment (not plain HTML). See src/utils/facebookCAPI.js for full code.
+
+      Example usage (React/JS):
+      import { sendPurchaseEvent } from './src/utils/facebookCAPI.js';
+      sendPurchaseEvent(orderData);
+
+      For routing or SPA, use React Router or similar in JS. This HTML file is static and does not support dynamic routing.
+    -->
+
+    <!-- Facebook Pixel JS (src/utils/facebookPixel.js) Documentation -->
+    <!--
+      The file src/utils/facebookPixel.js contains helper functions to trigger Facebook Pixel events from your React app:
+
+      - FB_PIXEL_ID: The Pixel ID used in both HTML and JS (should match the ID in the script above).
+      - pageView(): Triggers a 'PageView' event (called on every route change).
+      - event(name, options): Triggers custom events.
+      - FBEvents: An object with e-commerce event helpers (viewContent, addToCart, initiateCheckout, purchase, completeRegistration).
+
+      How it relates to this HTML:
+      - The script in this HTML loads the Pixel and sets up window.fbq.
+      - The JS functions in facebookPixel.js use window.fbq to send events dynamically from your React app.
+      - Both must use the same Pixel ID for correct tracking.
+
+      Example usage (React/JS):
+      import { FBEvents } from './src/utils/facebookPixel.js';
+      FBEvents.purchase(...);
+
+      See src/utils/facebookPixel.js for full code and event details.
+    -->
+    -->
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
