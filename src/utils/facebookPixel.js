@@ -15,6 +15,13 @@ export const event = (name, options = {}) => {
 
 // Common E-commerce Events
 export const FBEvents = {
+    // Add Payment Info
+    addPaymentInfo: (value, currency = 'BDT') => {
+      event('AddPaymentInfo', {
+        value: value,
+        currency: currency
+      });
+    },
   // View Content
   viewContent: (contentName, contentIds = []) => {
     event('ViewContent', {
