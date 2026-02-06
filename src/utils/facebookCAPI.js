@@ -47,7 +47,7 @@ export const sendPurchaseEvent = async (orderData) => {
       body: JSON.stringify({
         data: [eventData],
         access_token: ACCESS_TOKEN,
-        test_event_code: 'TEST12345' // Test mode-এর জন্য (পরে remove করবে)
+        test_event_code: 'TEST55849' // Test mode-এর জন্য (পরে remove করবে)
       })
     });
 
