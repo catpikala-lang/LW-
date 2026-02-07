@@ -198,8 +198,8 @@ export default function ProductDetails() {
                     ))}
                   </div>
 
-                  {/* Product Info Section - Below Images */}
-                  <div>
+                  {/* Size, Quantity, Cart/Buy Section - Below Images */}
+                  <div className="mb-8">
                     <h1 className="text-3xl lg:text-4xl font-bold mb-4">{product.name}</h1>
 
                     <div className="flex items-center space-x-4 mb-6">
@@ -212,10 +212,6 @@ export default function ProductDetails() {
                         <span className="ml-2 text-gray-500">({product.reviews} reviews)</span>
                       </div>
                     </div>
-
-                    <p className="text-gray-700 leading-relaxed mb-8">
-                      {product.longDescription || product.description}
-                    </p>
 
                     {/* Size Selection */}
                     {product.sizes && product.sizes.length > 0 && (
@@ -269,6 +265,13 @@ export default function ProductDetails() {
                         Buy Now
                       </button>
                     </div>
+                  </div>
+
+                  {/* Description/Details Section - Below Cart/Buy */}
+                  <div>
+                    <p className="text-gray-700 leading-relaxed mb-8">
+                      {product.longDescription || product.description}
+                    </p>
 
                     {/* Trust Badges */}
                     <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-200">
