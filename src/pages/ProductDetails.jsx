@@ -161,72 +161,129 @@ export default function ProductDetails() {
           {product.sizes && product.sizes.length > 0 && (
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-3 flex items-center">
-                <Ruler className="w-5 h-5 mr-2" /> Select Size
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {product.sizes.map(size => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`px-6 py-2 border-2 rounded-lg transition font-medium ${
-                      selectedSize === size ? 'border-accent bg-accent/5 text-accent' : 'border-gray-200 hover:border-accent/50'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+                <div className="container mx-auto px-2 sm:px-4 py-6 sm:py-8">
+                  {/* Breadcrumb */}
+                  <div className="mb-4 sm:mb-6">
+                    <nav className="text-xs sm:text-sm text-gray-600">
+                      <Link to="/" className="hover:text-accent">Home</Link>
+                      <span className="mx-1 sm:mx-2">/</span>
+                      <Link to="/shop" className="hover:text-accent">Shop</Link>
+                      <span className="mx-2">/</span>
+                      <span className="text-gray-900 font-medium">{product.category}</span>
+                      <span className="mx-2">/</span>
+                      <span className="text-primary font-semibold">{product.name}</span>
+                    </nav>
+                  </div>
 
-          {/* Quantity Selection */}
-          <div className="mb-8">
-             <h3 className="text-lg font-semibold mb-3">Quantity</h3>
-             <div className="flex items-center space-x-4">
-                <div className="flex items-center border-2 border-gray-200 rounded-lg overflow-hidden">
-                  <button onClick={() => setQuantity(q => Math.max(1, q-1))} className="px-4 py-2 hover:bg-gray-100 transition">-</button>
-                  <span className="px-6 py-2 border-x-2 border-gray-200 font-bold">{quantity}</span>
-                  <button onClick={() => setQuantity(q => q+1)} className="px-4 py-2 hover:bg-gray-100 transition">+</button>
+                  {/* Images Section - Always on Top */}
+                  <div className="bg-gray-100 rounded-2xl overflow-hidden mb-6 sm:mb-8 relative group">
+                    <img
+                      src={product.images[selectedImage]}
+                      alt={product.name}
+                      className="w-full h-[400px] lg:h-[500px] object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                  {/* Thumbnails */}
+                  <div className="flex space-x-4 overflow-x-auto py-2 mb-8">
+                    {product.images.map((img, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedImage(index)}
+                        className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition ${
+                          selectedImage === index ? 'border-accent' : 'border-transparent bg-gray-100'
+                        }`}
+                      >
+                        <img src={img} alt="thumbnail" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Product Info Section - Below Images */}
+                  <div>
+                    <h1 className="text-3xl lg:text-4xl font-bold mb-4">{product.name}</h1>
+
+                    <div className="flex items-center space-x-4 mb-6">
+                      <div className="text-3xl font-bold text-accent">
+                        ৳{product.price.toLocaleString('bn-BD')}
+                      </div>
+                      <div className="flex items-center text-yellow-500">
+                        <Star className="w-5 h-5 fill-current" />
+                        <span className="ml-1 text-gray-700 font-medium">{product.rating}</span>
+                        <span className="ml-2 text-gray-500">({product.reviews} reviews)</span>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-700 leading-relaxed mb-8">
+                      {product.longDescription || product.description}
+                    </p>
+
+                    {/* Size Selection */}
+                    {product.sizes && product.sizes.length > 0 && (
+                      <div className="mb-6">
+                        <h3 className="text-lg font-semibold mb-3 flex items-center">
+                          <Ruler className="w-5 h-5 mr-2" /> Select Size
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
+                          {product.sizes.map(size => (
+                            <button
+                              key={size}
+                              onClick={() => setSelectedSize(size)}
+                              className={`px-6 py-2 border-2 rounded-lg transition font-medium ${
+                                selectedSize === size ? 'border-accent bg-accent/5 text-accent' : 'border-gray-200 hover:border-accent/50'
+                              }`}
+                            >
+                              {size}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Quantity & Cart */}
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="flex items-center border rounded-lg overflow-hidden">
+                        <button
+                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                          className="px-4 py-2 text-lg font-bold bg-gray-100 hover:bg-gray-200 transition"
+                        >-</button>
+                        <span className="px-6 py-2 text-lg font-semibold">{quantity}</span>
+                        <button
+                          onClick={() => setQuantity(quantity + 1)}
+                          className="px-4 py-2 text-lg font-bold bg-gray-100 hover:bg-gray-200 transition"
+                        >+</button>
+                      </div>
+                      <span className="text-xl font-bold text-primary">Total: ৳{(product.price * quantity).toLocaleString('bn-BD')}</span>
+                    </div>
+
+                    <div className="flex gap-4 mb-8">
+                      <button 
+                        onClick={handleAddToCart}
+                        className="flex-1 bg-primary text-white py-4 rounded-xl font-bold flex items-center justify-center hover:bg-opacity-90 transition shadow-lg active:scale-95"
+                      >
+                        <ShoppingBag className="w-6 h-6 mr-2" /> Add to Cart
+                      </button>
+                      <button 
+                        onClick={handleBuyNow}
+                        className="flex-1 border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary hover:text-white transition active:scale-95"
+                      >
+                        Buy Now
+                      </button>
+                    </div>
+
+                    {/* Trust Badges */}
+                    <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-200">
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-accent/10 p-2 rounded-full">
+                          <Truck className="text-accent w-5 h-5" />
+                        </div>
+                        <span className="text-sm font-semibold">Fast Delivery</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-accent/10 p-2 rounded-full">
+                          <Shield className="text-accent w-5 h-5" />
+                        </div>
+                        <span className="text-sm font-semibold">1 Year Warranty</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-gray-600 font-medium">
-                  Total: <span className="text-accent text-xl font-bold">৳{(product.price * quantity).toLocaleString('bn-BD')}</span>
-                </div>
-             </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <button 
-              onClick={handleAddToCart}
-              className="flex-1 bg-primary text-white py-4 rounded-xl font-bold flex items-center justify-center hover:bg-opacity-90 transition shadow-lg active:scale-95"
-            >
-              <ShoppingBag className="w-6 h-6 mr-2" /> Add to Cart
-            </button>
-            <button 
-              onClick={handleBuyNow}
-              className="flex-1 border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary hover:text-white transition active:scale-95"
-            >
-              Buy Now
-            </button>
-          </div>
-
-          {/* Trust Badges */}
-          <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-200">
-            <div className="flex items-center space-x-3">
-              <div className="bg-accent/10 p-2 rounded-full">
-                <Truck className="text-accent w-5 h-5" />
-              </div>
-              <span className="text-sm font-semibold">Fast Delivery</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="bg-accent/10 p-2 rounded-full">
-                <Shield className="text-accent w-5 h-5" />
-              </div>
-              <span className="text-sm font-semibold">1 Year Warranty</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
