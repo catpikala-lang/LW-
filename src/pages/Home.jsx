@@ -66,7 +66,7 @@ export default function Home() {
             <div className="flex justify-center mb-2 sm:mb-4">
               <Truck className="w-12 h-12 text-accent" />
             </div>
-            {/* Removed free delivery text as per request */}
+            {/* Free delivery text removed. No delivery text shown here. */}
           </div>
           
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg text-center">

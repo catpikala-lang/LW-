@@ -13,6 +13,7 @@ import { FBEvents } from '../utils/facebookPixel';
 export default function Checkout() {
   const navigate = useNavigate();
   const { cartItems, subtotal, shipping, total, clearCart, setShipping } = useCart();
+  const [deliveryArea, setDeliveryArea] = useState('dhaka'); // Default to Dhaka
   const [deliveryArea, setDeliveryArea] = useState('');
   
   const [formData, setFormData] = useState({
@@ -41,15 +42,18 @@ export default function Checkout() {
   const handleChange = (e) => {
       // Delivery area selection handler
       const handleDeliveryAreaChange = (e) => {
-        setDeliveryArea(e.target.value);
-        if (e.target.value === 'dhaka') {
+        const area = e.target.value;
+        setDeliveryArea(area);
+        if (area === 'dhaka') {
           setShipping(70);
-        } else if (e.target.value === 'outsideDhaka') {
+        } else if (area === 'outsideDhaka') {
           setShipping(130);
-        } else {
-          setShipping(0);
         }
       };
+      // Set initial shipping fee on mount
+      useEffect(() => {
+        setShipping(deliveryArea === 'dhaka' ? 70 : 130);
+      }, []);
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
