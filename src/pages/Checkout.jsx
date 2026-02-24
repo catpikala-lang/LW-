@@ -12,7 +12,7 @@ import { FBEvents } from '../utils/facebookPixel';
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const { cartItems, subtotal, shipping, total, clearCart } = useCart();
+  const { cartItems, subtotal, shipping, total, clearCart, setShipping } = useCart();
   const [deliveryArea, setDeliveryArea] = useState('');
   
   const [formData, setFormData] = useState({
