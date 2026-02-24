@@ -14,7 +14,6 @@ export default function Checkout() {
   const navigate = useNavigate();
   const { cartItems, subtotal, shipping, total, clearCart, setShipping } = useCart();
   const [deliveryArea, setDeliveryArea] = useState('dhaka'); // Default to Dhaka
-  const [deliveryArea, setDeliveryArea] = useState('');
   
   const [formData, setFormData] = useState({
     name: '',
