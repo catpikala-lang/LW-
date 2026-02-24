@@ -38,21 +38,21 @@ export default function Checkout() {
     }
   }, [cartItems, total]);
 
+  // Delivery area selection handler
+  const handleDeliveryAreaChange = (e) => {
+    const area = e.target.value;
+    setDeliveryArea(area);
+    if (area === 'dhaka') {
+      setShipping(70);
+    } else if (area === 'outsideDhaka') {
+      setShipping(130);
+    }
+  };
+  // Set initial shipping fee on mount
+  useEffect(() => {
+    setShipping(deliveryArea === 'dhaka' ? 70 : 130);
+  }, []);
   const handleChange = (e) => {
-      // Delivery area selection handler
-      const handleDeliveryAreaChange = (e) => {
-        const area = e.target.value;
-        setDeliveryArea(area);
-        if (area === 'dhaka') {
-          setShipping(70);
-        } else if (area === 'outsideDhaka') {
-          setShipping(130);
-        }
-      };
-      // Set initial shipping fee on mount
-      useEffect(() => {
-        setShipping(deliveryArea === 'dhaka' ? 70 : 130);
-      }, []);
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
