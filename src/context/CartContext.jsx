@@ -96,7 +96,8 @@ export function CartProvider({ children }) {
   );
 
   // Calculate total with shipping
-  const shipping = subtotal > 3000 ? 0 : 120;
+  // Shipping fee will be set in checkout page based on user selection
+  const [shipping, setShipping] = useState(0);
   const total = subtotal + shipping;
 
   // Toggle cart sidebar

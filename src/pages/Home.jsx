@@ -66,8 +66,7 @@ export default function Home() {
             <div className="flex justify-center mb-2 sm:mb-4">
               <Truck className="w-12 h-12 text-accent" />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">Free Delivery</h3>
-            <p className="text-gray-600 text-sm sm:text-base">All over Bangladesh within 3-5 days</p>
+            {/* Removed free delivery text as per request */}
           </div>
           
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg text-center">

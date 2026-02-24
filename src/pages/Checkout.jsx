@@ -13,6 +13,7 @@ import { FBEvents } from '../utils/facebookPixel';
 export default function Checkout() {
   const navigate = useNavigate();
   const { cartItems, subtotal, shipping, total, clearCart } = useCart();
+  const [deliveryArea, setDeliveryArea] = useState('');
   
   const [formData, setFormData] = useState({
     name: '',
@@ -38,6 +39,17 @@ export default function Checkout() {
   }, [cartItems, total]);
 
   const handleChange = (e) => {
+      // Delivery area selection handler
+      const handleDeliveryAreaChange = (e) => {
+        setDeliveryArea(e.target.value);
+        if (e.target.value === 'dhaka') {
+          setShipping(70);
+        } else if (e.target.value === 'outsideDhaka') {
+          setShipping(130);
+        } else {
+          setShipping(0);
+        }
+      };
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -226,6 +238,32 @@ export default function Checkout() {
         <div className="lg:col-span-2">
           <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6">
             <h2 className="text-xl font-bold mb-6 pb-4 border-b">গ্রাহকের তথ্য</h2>
+            {/* Delivery Area Selection */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4">ডেলিভারি এরিয়া নির্বাচন করুন</h3>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="deliveryArea"
+                    value="dhaka"
+                    checked={deliveryArea === 'dhaka'}
+                    onChange={handleDeliveryAreaChange}
+                  />
+                  <span>ঢাকার ভিতরে (৳৭০ ডেলিভারি চার্জ)</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="deliveryArea"
+                    value="outsideDhaka"
+                    checked={deliveryArea === 'outsideDhaka'}
+                    onChange={handleDeliveryAreaChange}
+                  />
+                  <span>ঢাকার বাহিরে (৳১৩০ ডেলিভারি চার্জ)</span>
+                </label>
+              </div>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div>
@@ -393,9 +431,7 @@ export default function Checkout() {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">ডেলিভারি চার্জ</span>
-                <span className={shipping === 0 ? 'text-green-600 font-semibold' : 'font-semibold'}>
-                  {shipping === 0 ? 'ফ্রি' : `৳${shipping}`}
-                </span>
+                <span className="font-semibold">{shipping > 0 ? `৳${shipping}` : '৳০'}</span>
               </div>
               <div className="border-t pt-3">
                 <div className="flex justify-between text-lg font-bold">

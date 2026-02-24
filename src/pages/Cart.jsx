@@ -164,16 +164,11 @@ export default function Cart() {
               
               <div className="flex justify-between">
                 <span className="text-gray-600">Shipping Fee</span>
-                <span className={shipping === 0 ? 'text-green-600 font-bold' : 'font-bold text-gray-900'}>
-                  {shipping === 0 ? 'FREE' : `৳${shipping}`}
-                </span>
+                <span className="font-bold text-gray-900">{shipping > 0 ? `৳${shipping}` : '৳০'}</span>
               </div>
 
               {shipping > 0 && (
-                <div className="bg-accent/5 p-3 rounded-lg text-accent text-xs flex items-start">
-                  <Truck className="w-4 h-4 mr-2 flex-shrink-0" />
-                  <span>Add <b>৳{(3000 - subtotal).toLocaleString('bn-BD')}</b> more for free shipping!</span>
-                </div>
+                {/* Removed free shipping logic and text */}
               )}
 
               <div className="border-t border-dashed pt-4 mt-4">
