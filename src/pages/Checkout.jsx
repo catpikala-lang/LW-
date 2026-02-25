@@ -163,22 +163,13 @@ export default function Checkout() {
               <Package className="w-6 h-6" />
             </div>
           </div>
-          
-          <h1 className="text-3xl font-bold mb-4 text-green-600">
-            অর্ডার সফল হয়েছে! 🎉
-          </h1>
-          <p className="text-gray-600 mb-8 text-lg">
-            ধন্যবাদ, {formData.name}! আপনার অর্ডারটি আমরা পেয়েছি।
-          </p>
-          
+          <h1 className="text-3xl font-bold mb-4 text-green-600">অর্ডার সফল হয়েছে! 🎉</h1>
+          <p className="text-gray-600 mb-8 text-lg">ধন্যবাদ, {formData.name}! আপনার অর্ডারটি আমরা পেয়েছি।</p>
           <div className="bg-white rounded-xl shadow-lg p-8 mb-8 text-left">
             <div className="text-center mb-6">
               <div className="text-sm text-gray-500 mb-1">আপনার অর্ডার নম্বর</div>
-              <div className="text-3xl font-bold text-accent bg-gray-50 py-3 px-6 rounded-lg inline-block">
-                {orderNumber}
-              </div>
+              <div className="text-3xl font-bold text-accent bg-gray-50 py-3 px-6 rounded-lg inline-block">{orderNumber}</div>
             </div>
-            
             <div className="space-y-6 mb-8">
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
@@ -189,7 +180,6 @@ export default function Checkout() {
                   <p className="text-gray-600">আমরা আপনার অর্ডারটি পেয়েছি এবং এটি ডাটাবেজে সেভ করা হয়েছে।</p>
                 </div>
               </div>
-              
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
                   <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
@@ -200,7 +190,6 @@ export default function Checkout() {
                 </div>
               </div>
             </div>
-            
             <button
               onClick={() => window.open(`https://wa.me/8801956869107?text=Hello%20Leather%20Wallah,%20আমার%20অর্ডার%20নম্বর%20${orderNumber}`)}
               className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center"
@@ -209,7 +198,6 @@ export default function Checkout() {
               WhatsApp এ মেসেজ দিন
             </button>
           </div>
-          
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link to="/shop" className="btn-primary py-3 text-center">আরো শপিং করুন</Link>
             <Link to="/tracking" className="btn-secondary py-3 text-center">অর্ডার ট্র্যাক করুন</Link>
@@ -264,7 +252,6 @@ export default function Checkout() {
                   <span>ঢাকার বাহিরে (৳১৩০ ডেলিভারি চার্জ)</span>
                 </label>
               </div>
-            {/* End Delivery Area Selection */}
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
