@@ -40,18 +40,16 @@ export default function Checkout() {
 
   // Delivery area selection handler
   const handleDeliveryAreaChange = (e) => {
-    const area = e.target.value;
-    setDeliveryArea(area);
-    if (area === 'dhaka') {
+    setDeliveryArea(e.target.value);
+  };
+  // Always update shipping fee when deliveryArea changes
+  useEffect(() => {
+    if (deliveryArea === 'dhaka') {
       setShipping(70);
-    } else if (area === 'outsideDhaka') {
+    } else if (deliveryArea === 'outsideDhaka') {
       setShipping(130);
     }
-  };
-  // Set initial shipping fee on mount
-  useEffect(() => {
-    setShipping(deliveryArea === 'dhaka' ? 70 : 130);
-  }, []);
+  }, [deliveryArea, setShipping]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -266,7 +264,7 @@ export default function Checkout() {
                   <span>ঢাকার বাহিরে (৳১৩০ ডেলিভারি চার্জ)</span>
                 </label>
               </div>
-            </div>
+            {/* End Delivery Area Selection */}
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
